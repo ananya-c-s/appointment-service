@@ -1,10 +1,10 @@
 # Stage 1: Build the app using Maven
 FROM maven:3.9.6-eclipse-temurin-17 AS build
 WORKDIR /app
-COPY src .
+COPY . .
 RUN mvn clean package -DskipTests
 
-# Stage 2: Run the app using lightweight JDK
+# Stage 2: Run the app using JDK image
 FROM eclipse-temurin:17-jdk-alpine
 WORKDIR /app
 COPY --from=build /app/target/appointments-service-0.0.1-SNAPSHOT.jar app.jar
