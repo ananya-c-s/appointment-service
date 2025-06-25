@@ -1,0 +1,14 @@
+services:
+  - type: web
+    name: appointments-service
+    env: docker
+    plan: starter
+    dockerfilePath: ./Dockerfile
+    buildCommand: "./mvnw clean package"
+    startCommand: "java -jar target/appointments-service.jar"
+    autoDeploy: true
+
+  - type: private-service
+    name: kafka-stack
+    env: docker
+    dockerComposePath: ./docker-compose.yml
