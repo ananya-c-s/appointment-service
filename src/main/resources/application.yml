@@ -1,32 +1,12 @@
 spring:
-  datasource:
-    url: jdbc:postgresql://localhost:5432/healthcare_db
-    username: postgres
-    password: Ammu123*
-    driver-class-name: org.postgresql.Driver
+  profiles:
+    active: ${SPRING_PROFILES_ACTIVE:local} # Defaults to 'local' if not set
 
-  jpa:
-    hibernate:
-      ddl-auto: update
-      dialect: org.hibernate.dialect.PostgreSQLDialect
-    show-sql: true
-
-  kafka:
-    bootstrap-servers: localhost:9092
-    producer:
-      key-serializer: org.apache.kafka.common.serialization.StringSerializer
-      value-serializer: org.apache.kafka.common.serialization.StringSerializer
-      properties:
-        enable.idempotence: true
-        acks: all
-        retries: 3
-
-
+server:
+  port: 8019
 
 logging:
   level:
     org:
       apache:
         kafka: INFO
-server:
-  port: 8019
